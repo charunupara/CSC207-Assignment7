@@ -59,7 +59,7 @@ public class Sorts {
       quickSort(arr,low, index-1);
       quickSort(arr, index+1, high);
     } // if
-  }
+  } // quickSort(T[] arr, int low, int high)
   
   public static <T extends Comparable<T>> int partition(T[] arr, int low, int high) {
     T pivot = arr[high];
@@ -81,5 +81,16 @@ public class Sorts {
     
     return i+1;
   } // partition(T[] arr, int low, int high)
+  
+  public static void bubbleSort(T[] arr) {
+    for (int i = 0; i < arr.length - 1; i++) {
+      for(int j = 0; j < arr.length - i - 1; j++)
+        if(arr[j] > arr[j + 1]) {
+          int temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j+1] = temp;
+        }
+    }
+  }
   
 } // Sorts
