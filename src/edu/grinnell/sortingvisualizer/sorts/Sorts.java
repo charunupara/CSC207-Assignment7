@@ -2,10 +2,17 @@ package edu.grinnell.sortingvisualizer.sorts;
 
 import java.util.ArrayList;
 import java.util.List;
+import edu.grinnell.sortingvisualizer.events.CompareEvent;
+import edu.grinnell.sortingvisualizer.events.CopyEvent;
+import edu.grinnell.sortingvisualizer.events.SortEvent;
+import edu.grinnell.sortingvisualizer.events.SwapEvent;
 
 public class Sorts<T extends Comparable<T>> {
 
-  public static <T extends Comparable<T>> void selectionSort(T[] arr) {
+  public static <T extends Comparable<T>> ArrayList<SortEvent<T>> selectionSort(T[] arr) {
+   
+    ArrayList<SortEvent<T>> result = new ArrayList<SortEvent<T>>();
+    
     int length = arr.length;
 
     int minIndex;
@@ -14,16 +21,23 @@ public class Sorts<T extends Comparable<T>> {
     for (int i = 0; i < length - 1; i++) {
       minIndex = i;
       for (int j = i + 1; j < length; j++) {
+        result.add(new CompareEvent<T>(j, minIndex));
         if (arr[j].compareTo(arr[minIndex]) < 0) {
           minIndex = j;
         } // if
       } // for
 
+      result.add(new CompareEvent<T>(i, minIndex));
+      
+      
       T temp = arr[minIndex];
       arr[minIndex] = arr[i];
       arr[i] = temp;
 
+      result.add(new SwapEvent<T>(i, minIndex));
     } // for
+    
+    return result;
   } // selectionSort(T[] arr)
 
   /*
@@ -33,7 +47,10 @@ public class Sorts<T extends Comparable<T>> {
    * 
    */
   
-  public static <T extends Comparable<T>> void insertionSort(T[] arr) {
+  public static <T extends Comparable<T>> ArrayList<SwapEvent<T>> insertionSort(T[] arr) {
+    
+    ArrayList<SwapEvent<T>> result = new ArrayList<SwapEvent<T>>();
+    
     int length = arr.length;
 
     for (int i = 0; i < length; i++) {
@@ -41,11 +58,14 @@ public class Sorts<T extends Comparable<T>> {
       int j = i - 1;
       
       while (j >= 0 && (arr[j].compareTo(key)) > 0) {
+        
         arr[j + 1] = arr[j];
         --j;
       } // while
       arr[j + 1] = key;
     } // for
+    
+    return result;
   } // insertionSort(T[] arr)
 
 
@@ -69,6 +89,10 @@ public class Sorts<T extends Comparable<T>> {
     int j = middle + 1;
     T lowValue = null;
     T highValue = null;
+    
+    for(int k = 0; k < length; k++) {
+      
+    }
     
     
   }
