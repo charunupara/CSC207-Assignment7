@@ -1,15 +1,22 @@
 package edu.grinnell.sortingvisualizer.sorts;
 
-public class Sorts {
+import java.util.List;
+
+public class Sorts<T extends Comparable<T>> {
+  
+  public static List<Integer> list;
+  
   public static <T extends Comparable<T>> void selectionSort(T[] arr) {
     int length = arr.length;
 
     int minIndex;
-    int maxIndex;
+    //int maxIndex;
 
     for (int i = 0; i < length - 1; i++) {
       minIndex = i;
       for (int j = i + 1; j < length; j++) {
+        list.add(j);
+        list.add(minIndex);
         if (arr[j].compareTo(arr[minIndex]) < 0) {
           minIndex = j;
         } // if
@@ -82,11 +89,11 @@ public class Sorts {
     return i+1;
   } // partition(T[] arr, int low, int high)
   
-  public static void bubbleSort(T[] arr) {
+  public static <T extends Comparable<T>> void bubbleSort(T[] arr) {
     for (int i = 0; i < arr.length - 1; i++) {
       for(int j = 0; j < arr.length - i - 1; j++)
-        if(arr[j] > arr[j + 1]) {
-          int temp = arr[j];
+        if(arr[j].compareTo(arr[j + 1]) > 0) {
+          T temp = arr[j];
           arr[j] = arr[j + 1];
           arr[j+1] = temp;
         }
