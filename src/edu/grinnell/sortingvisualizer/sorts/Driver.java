@@ -6,7 +6,7 @@ public class Driver {
     
     printArray(arr);
     
-    Sorts.quickSort(arr, 0, 4);
+    Sorts.insertionSort(arr);
     
     
     printArray(arr);
