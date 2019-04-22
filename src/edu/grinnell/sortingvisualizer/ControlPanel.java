@@ -2,6 +2,7 @@ package edu.grinnell.sortingvisualizer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
@@ -141,7 +142,11 @@ public class ControlPanel extends JPanel {
                 // TODO: fill me in
                 // 1. Create the sorting events list
                 // 2. Add in the compare events to the end of the list
-                List<SortEvent<Integer>> events = new java.util.LinkedList<>();
+                List<SortEvent<Integer>> events = generateEvents(sorts.getSelectedItem().toString(), notes.getNotes());
+                
+                for (int i = 1; i < notes.getNotes().length; i++) {
+                  events.add(new CompareEvent<Integer>(i-1,i));
+                }
                 
                 // NOTE: The Timer class repetitively invokes a method at a
                 //       fixed interval.  Here we are specifying that method
@@ -155,8 +160,15 @@ public class ControlPanel extends JPanel {
                     
                     @Override
                     public void run() {
+                      notes.clearAllHighlighted();
                         if (index < events.size()) {
                             SortEvent<Integer> e = events.get(index++);
+                            
+                            e.apply(notes.getNotes());
+                            for (int i = 0; i < e.getAffectedIndices().size(); i++) {
+                              notes.highlightNote(i);
+                              scale.playNote(i, e.isEmphasized());
+                            }
                             // TODO: fill me in
                             // 1. Apply the next sort event.
                             // 3. Play the corresponding notes denoted by the
