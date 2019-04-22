@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import edu.grinnell.sortingvisualizer.sortevents.CompareEvent;
-import edu.grinnell.sortingvisualizer.sortevents.SortEvent;
+import edu.grinnell.sortingvisualizer.events.CompareEvent;
+import edu.grinnell.sortingvisualizer.events.SortEvent;
 import edu.grinnell.sortingvisualizer.sorts.Sorts;
 
 /**
@@ -52,10 +52,10 @@ public class ControlPanel extends JPanel {
             return Sorts.insertionSort(arr);
         case "Bubble":
             return Sorts.bubbleSort(arr);
-        case "Merge":
-            return Sorts.mergeSort(arr);
-        case("Quick"):
-            return Sorts.quickSort(arr);
+      //  case "Merge":
+      //      return Sorts.mergeSort(arr);
+     //   case("Quick"):
+     //       return Sorts.quickSort(arr);
         default:
             throw new IllegalArgumentException("generateEvents");
         }
