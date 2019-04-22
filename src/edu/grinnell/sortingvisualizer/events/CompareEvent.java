@@ -15,6 +15,11 @@ public class CompareEvent<T> implements SortEvent<T> {
   }
 
   @Override
+  public String toString() {
+    return "compare(" + index1 + "," + index2 + ")";
+  }
+  
+  @Override
   public void apply(T[] arr) {
     return;
   }

@@ -14,6 +14,13 @@ public class SwapEvent<T> implements SortEvent<T> {
     this.index1 = index1;
     this.index2 = index2;
   }
+ 
+  
+  @Override
+  public String toString() {
+    return "swap(" + index1 + "," + index2 + ")";
+  }
+
   @Override
   public void apply(T[] arr) {
     T temp = arr[this.index1];

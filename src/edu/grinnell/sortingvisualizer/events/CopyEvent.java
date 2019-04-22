@@ -17,6 +17,12 @@ public class CopyEvent<T> implements SortEvent<T> {
   }
   
   @Override
+  public String toString() {
+    return "copy(" + destination + "," + source + ")";
+  }
+
+  
+  @Override
   public void apply(T[] arr) {
     arr[destination] = arr[source];
   }
