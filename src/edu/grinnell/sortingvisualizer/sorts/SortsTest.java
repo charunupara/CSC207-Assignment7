@@ -1,8 +1,10 @@
 package edu.grinnell.sortingvisualizer.sorts;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
 import java.util.Random;
 import org.junit.jupiter.api.Test;
+import edu.grinnell.sortingvisualizer.events.SortEvent;
 
 class SortsTest {
   
@@ -81,66 +83,64 @@ class SortsTest {
     //Test with empty array
     Integer[] arr1 = {};
     Integer[] arr2 = {};
-    Sorts.selectionSort(arr1);
+    Sorts.mergeSort(arr1);
     assertArrayEquals(arr1, arr2);
     
     //Test with a single element
     Integer[] arr3 = {63};
     Integer[] arr4 = {63};
-    Sorts.selectionSort(arr3);
+    Sorts.mergeSort(arr3);
     assertArrayEquals(arr3, arr4);
     
     //Already sorted array
     Integer[] arr5 = {1, 2, 3, 4, 5};
     Integer[] arr6 = {1, 2, 3, 4, 5};
-    Sorts.selectionSort(arr5);
+    Sorts.mergeSort(arr5);
     assertArrayEquals(arr5, arr6);
     
     //Descending array, worst case scenario
     Integer[] arr7 = {5, 4, 3, 2, 1};
     Integer[] arr8 = {1, 2, 3, 4, 5};
-    Sorts.selectionSort(arr7);
+    Sorts.mergeSort(arr7);
     assertArrayEquals(arr7, arr8);
     
     //Permute array, then sort
     Integer[] arr9 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     Integer[] arr10 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     shuffleArray(arr9);
-    Sorts.selectionSort(arr9);
+    Sorts.mergeSort(arr9);
     assertArrayEquals(arr9, arr10);
   }
   
   @Test
   public void quickSortTest() {
-    //Test with empty array
-    Integer[] arr1 = {};
-    Integer[] arr2 = {};
-    Sorts.selectionSort(arr1);
-    assertArrayEquals(arr1, arr2);
+    
+    ArrayList<SortEvent<Integer>> events = new ArrayList<SortEvent<Integer>>();
+    
     
     //Test with a single element
     Integer[] arr3 = {63};
     Integer[] arr4 = {63};
-    Sorts.selectionSort(arr3);
+    Sorts.quickSort(arr3, 0, arr3.length -1,events);
     assertArrayEquals(arr3, arr4);
     
     //Already sorted array
     Integer[] arr5 = {1, 2, 3, 4, 5};
     Integer[] arr6 = {1, 2, 3, 4, 5};
-    Sorts.selectionSort(arr5);
+    Sorts.quickSort(arr5, 0, arr5.length-1,events);
     assertArrayEquals(arr5, arr6);
     
     //Descending array, worst case scenario
     Integer[] arr7 = {5, 4, 3, 2, 1};
     Integer[] arr8 = {1, 2, 3, 4, 5};
-    Sorts.selectionSort(arr7);
+    Sorts.quickSort(arr7, 0, arr7.length-1,events);
     assertArrayEquals(arr7, arr8);
     
     //Permute array, then sort
     Integer[] arr9 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     Integer[] arr10 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     shuffleArray(arr9);
-    Sorts.selectionSort(arr9);
+    Sorts.quickSort(arr9, 0, arr9.length-1, events);
     assertArrayEquals(arr9, arr10);
   }
   

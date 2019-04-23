@@ -7,10 +7,10 @@ public class CopyEvent<T> implements SortEvent<T> {
 
   int destination;
   
-  int source;
+  T source;
   
   
-  public CopyEvent(int destination, int source) {
+  public CopyEvent(int destination, T source) {
     this.destination = destination;
     this.source = source;
     
@@ -24,7 +24,7 @@ public class CopyEvent<T> implements SortEvent<T> {
   
   @Override
   public void apply(T[] arr) {
-    arr[destination] = arr[source];
+    arr[destination] = source;
   }
   
   @Override

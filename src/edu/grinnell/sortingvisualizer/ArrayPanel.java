@@ -30,6 +30,7 @@ public class ArrayPanel extends JPanel {
 
   @Override
   public void paintComponent(Graphics g) {
+    super.paintComponent(g);
     Integer[] current = this.notes.getNotes();
     // System.err.println(Arrays.toString(current));
 
