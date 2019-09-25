@@ -1,4 +1,4 @@
-# CSC207-Assignment7
+# Sorting Algorithms Visualizer
 
 Charun Upara, Priyank Shah
 
